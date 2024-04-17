@@ -14,19 +14,19 @@ struct Employee {
 
 Employee enterEmployeeData() {
     Employee emp;
-    cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ð¿Ñ€Ð¸Ð·Ð²Ñ–Ñ‰Ðµ: ";
+    cout << "Ââåä³òü ïðèçâ³ùå: ";
     cin >> emp.surname;
-    cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ñ–Ð¼'Ñ: ";
+    cout << "Ââåä³òü ³ì'ÿ: ";
     cin >> emp.name;
-    cout << "ÐŸÐ¾Ð²Ð½Ð¸Ñ… Ñ€Ð¾ÐºÑ–Ð²: ";
+    cout << "Ïîâíèõ ðîê³â: ";
     cin >> emp.age;
     return emp;
 }
 
 void printEmployee(const Employee& emp) {
-    cout << "ÐŸÑ€Ð¸Ð·Ð²Ð¸Ñ‰Ðµ: " << emp.surname << endl;
-    cout << "Ð†Ð¼'Ñ: " << emp.name << endl;
-    cout << "Ð Ð¾ÐºÑ–Ð²: " << emp.age << endl;
+    cout << "Ïðèçâèùå: " << emp.surname << endl;
+    cout << "²ì'ÿ: " << emp.name << endl;
+    cout << "Ðîê³â: " << emp.age << endl;
 }
 
 vector<Employee> findEmployeesByAge(const vector<Employee>& employees, int age) {
@@ -104,30 +104,30 @@ int main() {
     saveEmployeesToFile(employees, "employees.txt");
 
     int searchAge;
-    cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ ÑÐºÑ–Ð»ÑŒÐºÐ¸ Ñ€Ð¾ÐºÑ–Ð² Ð´Ð»Ñ Ð¿Ð¾ÑˆÑƒÐºÑƒ: ";
+    cout << "Ââåä³òü ñê³ëüêè ðîê³â äëÿ ïîøóêó: ";
     cin >> searchAge;
     vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
-    cout << "Ð’Ñ–Ðº " << searchAge << ":" << endl;
+    cout << "Â³ê " << searchAge << ":" << endl;
     for (const auto& emp : employeesByAge) {
         printEmployee(emp);
     }
 
     
     string searchSurname;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð²Ð½Ðµ Ð¿Ñ€Ð¸Ð·Ð²Ð¸Ñ‰Ðµ Ð´Ð»Ñ Ð¿Ð¾ÑˆÑƒÐºÑƒ: ";
+    cout << "Ââåäèòü ïîâíå ïðèçâèùå äëÿ ïîøóêó: ";
     cin >> searchSurname;
     vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
-    cout << "ÐŸÑ€Ð¸Ð·Ð²Ð¸Ñ‰Ðµ " << searchSurname << ":" << endl;
+    cout << "Ïðèçâèùå " << searchSurname << ":" << endl;
     for (const auto& emp : employeesBySurname) {
         printEmployee(emp);
     }
 
     
     string searchPartialSurname;
-    cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ñ‡Ð°ÑÑ‚ÐºÑƒ Ð¿Ñ€Ð¸Ð·Ð²Ð¸Ñ‰Ð° Ð´Ð»Ñ Ð¿Ð¾ÑˆÑƒÐºÑƒ: ";
+    cout << "Ââåä³òü ÷àñòêó ïðèçâèùà äëÿ ïîøóêó: ";
     cin >> searchPartialSurname;
     vector<Employee> employeesByPartialSurname = findEmployeesByPartialSurname(employees, searchPartialSurname);
-    cout << "ÐŸÑ€Ð¸Ð·Ð²Ð¸Ñ‰Ðµ " << searchPartialSurname << ":" << endl;
+    cout << "Ïðèçâèùå " << searchPartialSurname << ":" << endl;
     for (const auto& emp : employeesByPartialSurname) {
         printEmployee(emp);
     }
