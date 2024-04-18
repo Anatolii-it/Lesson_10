@@ -99,6 +99,30 @@ void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) 
     cout << " успішно зчитано з employees.txt" << endl;
 }
 
+void editEmployee(vector<Employee>& employees, const string& surname) {
+    for (auto& emp : employees) {
+        if (emp.surname == surname) {
+            cout << "Введіть нові дані для працівника '" << surname << "':" << endl;
+            emp = enterEmployeeData();
+            cout << "Дані про працівника оновлено." << endl;
+            return;
+        }
+    }
+    cout << "Працівника з прізвищем '" << surname << "' не знайдено." << endl;
+}
+
+//видалення працівника
+void deleteEmployee(vector<Employee>& employees, const string& surname) {
+    for (auto it = employees.begin(); it != employees.end(); ++it) {
+        if (it->surname == surname) {
+            employees.erase(it);
+            cout << "Працівника з прізвищем '" << surname << "' видалено." << endl;
+            return;
+        }
+    }
+    cout << "Працівника з прізвищем '" << surname << "' не знайдено." << endl;
+}
+
 int x = -1;
 int main() {
     SetConsoleCP(1251);
@@ -115,6 +139,8 @@ int main() {
         cout << "#                \033[1;33mПошук за віком      - 4 \033[0m     #" <<endl;
         cout << "#              Пошук за Прізвищем    - 5      #" << endl;
         cout << "#           \033[1;36mПошук за часткою Прізвища- 6\033[0m      #" <<endl;
+        cout << "#           Редагування за Прізвищем - 7      #" << endl;
+        cout << "#           Видалення за Прізвищем   - 8      #" << endl;
         cout << "#                    Вихід           - 0      #" << endl;
         cout << "#---------------------------------------------#" << endl;
         cout << "                           мій вибір - ";
@@ -164,12 +190,27 @@ int main() {
                 printEmployee(emp);
             }
         }
+        if (x == 7) { //для редагування працівника
+            string editSurname;
+            cout << "Введіть прізвище працівника для редагування: ";
+            cin >> editSurname;
+            system("cls");
+            editEmployee(employees, editSurname);
+        }
+        if (x == 8) { //  видалення працівника
+            string deleteSurname;
+            cout << "Введіть прізвище працівника для видалення: ";
+            cin >> deleteSurname;
+            system("cls");
+            deleteEmployee(employees, deleteSurname);
+        }
 
         if (x == 0) {
             cout << "До побачення." << endl;
+            saveEmployeesToFile(employees, "employees.txt");
             return 0;
         }
-        if (x > 6) {
+        if (x > 8) {
             cout << "Такого пункта меню не існує"<< endl;
         }
         cout << "#---------------------------------#" << endl;
