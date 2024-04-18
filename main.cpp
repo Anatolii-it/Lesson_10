@@ -1,4 +1,5 @@
 #include "Lib.h"
+#include <conio.h>
 
 Employee enterEmployeeData() {
     Employee emp;
@@ -13,10 +14,10 @@ Employee enterEmployeeData() {
 
 void printEmployee(const Employee& emp) {
     cout << "#---------------------------------#" << endl;
-    cout << "#    Призвище: " << emp.surname << endl;
-    cout << "#        Ім'я: " << emp.name << endl;
-    cout << "#       Років: " << emp.age << endl;
-    cout << "#---------------------------------#" << endl;
+    cout << "    Призвище: " << emp.surname << endl;
+    cout << "        Ім'я: " << emp.name << endl;
+    cout << "       Років: " << emp.age << endl;
+
 }
 
 vector<Employee> findEmployeesByAge(const vector<Employee>& employees, int age) {
@@ -100,6 +101,7 @@ int main() {
         cout << "#           Пошук за часткою Прізвища- 6      #" << endl;
         cout << "#                    Вихід           - 0      #" << endl;
         cout << "#---------------------------------------------#" << endl;
+        cout << "                            Ваша дія - ";
         cin >> x;
         if (x == 1) {
             loadEmployeesFromFile(employees, "employees.txt");
@@ -114,6 +116,7 @@ int main() {
             int searchAge;
             cout << "Введіть вік: ";
             cin >> searchAge;
+            system("cls");
             vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
             for (const auto& emp : employeesByAge) {
                 printEmployee(emp);
@@ -123,6 +126,7 @@ int main() {
             string searchSurname;
             cout << "Введить призвище для пошуку: ";
             cin >> searchSurname;
+            system("cls");
             vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
             for (const auto& emp : employeesBySurname) {
                 printEmployee(emp);
@@ -132,19 +136,21 @@ int main() {
             string searchPartialSurname;
             cout << "Введіть частку призвища для пошуку: ";
             cin >> searchPartialSurname;
+            system("cls");
             vector<Employee> employeesByPartialSurname = findEmployeesByPartialSurname(employees, searchPartialSurname);
-            cout << "Призвище " << searchPartialSurname << ":" << endl;
             for (const auto& emp : employeesByPartialSurname) {
                 printEmployee(emp);
             }
         }
 
         if (x == 0) {
-            cout << "До побачення." << endl;
+            cout << "Не забув зберегти у файл зміни ." << endl;
             return 0;
         }
+        cout << "#---------------------------------#" << endl;
         cout << "Натисніть будь-яку клавішу для продовження..." << endl;
-        system("pause");
+
+        _getch();
     }
 
 
