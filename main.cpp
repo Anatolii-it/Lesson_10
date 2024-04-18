@@ -1,8 +1,10 @@
 #include <iostream>
+#include <conio.h>
 #include <Windows.h>
 #include <fstream>
 #include <string>
 #include <vector>
+#include <limits>
 
 using namespace std;
 
@@ -116,7 +118,12 @@ int main() {
         cout << "#                    Вихід           - 0      #" << endl;
         cout << "#---------------------------------------------#" << endl;
         cout << "                           мій вибір - ";
-        cin >> x;
+        if (!(cin >> x)) {
+            cout << "Помилка: Введено не число!" << endl;
+            cin.clear();
+            
+        }
+
         if (x == 1) {
             loadEmployeesFromFile(employees, "employees.txt");
         }
@@ -162,9 +169,13 @@ int main() {
             cout << "До побачення." << endl;
             return 0;
         }
+        if (x > 6) {
+            cout << "Такого пункта меню не існує"<< endl;
+        }
         cout << "#---------------------------------#" << endl;
         cout << "Натисніть будь-яку клавішу для продовження..." << endl;
-        system("pause");
+        
+        _getch();
     }
     
 
