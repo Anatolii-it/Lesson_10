@@ -1,32 +1,22 @@
-#include <iostream>
-#include <Windows.h>
-#include <fstream>
-#include <string>
-#include <vector>
-
-using namespace std;
-
-struct Employee {
-    string surname;
-    string name;
-    int age;
-};
+#include "Lib.h"
 
 Employee enterEmployeeData() {
     Employee emp;
-    cout << "Enter surname: ";
+    cout << "Введіть призвіще: ";
     cin >> emp.surname;
-    cout << "Enter name: ";
+    cout << "Введіть ім'я: ";
     cin >> emp.name;
-    cout << "Enter age: ";
+    cout << "Повних років: ";
     cin >> emp.age;
     return emp;
 }
 
 void printEmployee(const Employee& emp) {
-    cout << "Surname: " << emp.surname << endl;
-    cout << "Name: " << emp.name << endl;
-    cout << "Age: " << emp.age << endl;
+    cout << "#---------------------------------#" << endl;
+    cout << "#    Призвище: " << emp.surname << endl;
+    cout << "#        Ім'я: " << emp.name << endl;
+    cout << "#       Років: " << emp.age << endl;
+    cout << "#---------------------------------#" << endl;
 }
 
 vector<Employee> findEmployeesByAge(const vector<Employee>& employees, int age) {
@@ -62,7 +52,7 @@ vector<Employee> findEmployeesByPartialSurname(const vector<Employee>& employees
 void saveEmployeesToFile(const vector<Employee>& employees, const string& filename) {
     ofstream outputFile(filename);
     if (!outputFile) {
-        cerr << "Error opening file for writing." << endl;
+        cerr << "неможливо почитати." << endl;
         return;
     }
 
@@ -71,16 +61,17 @@ void saveEmployeesToFile(const vector<Employee>& employees, const string& filena
     }
 
     outputFile.close();
-    cout << "Employee data saved to file." << endl;
+    cout << " збережено у файл employees.txt " << endl;
 }
 
-vector<Employee> loadEmployeesFromFile(const string& filename) {
-    vector<Employee> employees;
+void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) {
     ifstream inputFile(filename);
     if (!inputFile) {
         cerr << "Error opening file for reading." << endl;
-        return employees;
+        return;
     }
+
+    employees.clear();
 
     Employee emp;
     while (inputFile >> emp.surname >> emp.name >> emp.age) {
@@ -88,79 +79,74 @@ vector<Employee> loadEmployeesFromFile(const string& filename) {
     }
 
     inputFile.close();
-    cout << "Employee data loaded from file." << endl;
-    return employees;
+    cout << " успішно зчитано з employees.txt" << endl;
 }
 
-void displayMenu() {
-    cout << "Menu:" << endl;
-    cout << "1. Enter new employee data" << endl;
-    cout << "2. Save employees to file" << endl;
-    cout << "3. Load employees from file" << endl;
-    cout << "4. Find employees by age" << endl;
-    cout << "5. Find employees by surname" << endl;
-    cout << "6. Find employees by partial surname" << endl;
-    cout << "7. Exit" << endl;
-    cout << "Enter your choice: ";
-}
-
+int x = -1;
 int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    vector<Employee> employees = loadEmployeesFromFile("employees.txt");
+    vector<Employee> employees;
 
-    int choice = 0;
-    while (choice != 7) {
-        displayMenu();
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
+    while (x != 0) {
+        system("cls");
+        cout << "#---------------------------------------------#" << endl;
+        cout << "#                    Меню                     #" << endl;
+        cout << "#                Зчитати з файлу     - 1      #" << endl;
+        cout << "#          Занести нового працівника - 2      #" << endl;
+        cout << "#               Збереження у файл    - 3      #" << endl;
+        cout << "#                Пошук за віком      - 4      #" << endl;
+        cout << "#              Пошук за Прізвищем    - 5      #" << endl;
+        cout << "#           Пошук за часткою Прізвища- 6      #" << endl;
+        cout << "#                    Вихід           - 0      #" << endl;
+        cout << "#---------------------------------------------#" << endl;
+        cin >> x;
+        if (x == 1) {
+            loadEmployeesFromFile(employees, "employees.txt");
+        }
+        if (x == 2) {
             employees.push_back(enterEmployeeData());
-            break;
-        case 2:
+        }
+        if (x == 3) {
             saveEmployeesToFile(employees, "employees.txt");
-            break;
-        case 3:
-            employees = loadEmployeesFromFile("employees.txt");
-            break;
-        case 4:
+        }
+        if (x == 4) {
             int searchAge;
-            cout << "Enter age to search: ";
+            cout << "Введіть вік: ";
             cin >> searchAge;
             vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
-            cout << "Employees aged " << searchAge << ":" << endl;
             for (const auto& emp : employeesByAge) {
                 printEmployee(emp);
             }
-            break;
-        case 5:
+        }
+        if (x == 5) {
             string searchSurname;
-            cout << "Enter full surname to search: ";
+            cout << "Введить призвище для пошуку: ";
             cin >> searchSurname;
             vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
-            cout << "Employees with surname " << searchSurname << ":" << endl;
             for (const auto& emp : employeesBySurname) {
                 printEmployee(emp);
             }
-            break;
-        case 6:
+        }
+        if (x == 6) {
             string searchPartialSurname;
-            cout << "Enter partial surname to search: ";
+            cout << "Введіть частку призвища для пошуку: ";
             cin >> searchPartialSurname;
             vector<Employee> employeesByPartialSurname = findEmployeesByPartialSurname(employees, searchPartialSurname);
-            cout << "Employees with partial surname " << searchPartialSurname << ":" << endl;
+            cout << "Призвище " << searchPartialSurname << ":" << endl;
             for (const auto& emp : employeesByPartialSurname) {
                 printEmployee(emp);
             }
-            break;
-        case 7:
-            cout << "Exiting program." << endl;
-            break;
-        default:
-            cout << "Invalid choice. Please enter a number from 1 to 7." << endl;
         }
+
+        if (x == 0) {
+            cout << "До побачення." << endl;
+            return 0;
+        }
+        cout << "Натисніть будь-яку клавішу для продовження..." << endl;
+        system("pause");
     }
+
 
     return 0;
 }
