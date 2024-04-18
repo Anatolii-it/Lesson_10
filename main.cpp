@@ -25,10 +25,10 @@ Employee enterEmployeeData() {
 
 void printEmployee(const Employee& emp) {
     cout << "#---------------------------------#" << endl;
-    cout << "#    Призвище: " << emp.surname << endl;
-    cout << "#        Ім'я: " << emp.name << endl;
-    cout << "#       Років: " << emp.age << endl;
-    cout << "#---------------------------------#" << endl;
+    cout << "     Призвище: " << emp.surname << endl;
+    cout << "         Ім'я: " << emp.name << endl;
+    cout << "        Років: " << emp.age << endl;
+   
 }
 
 vector<Employee> findEmployeesByAge(const vector<Employee>& employees, int age) {
@@ -73,12 +73,14 @@ void saveEmployeesToFile(const vector<Employee>& employees, const string& filena
     }
 
     outputFile.close();
+    cout << "#---------------------------------#" << endl;
     cout << " збережено у файл employees.txt " << endl;
 }
 
 void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) {
     ifstream inputFile(filename);
     if (!inputFile) {
+        cout << "#---------------------------------#" << endl;
         cerr << "Error opening file for reading." << endl;
         return;
     }
@@ -91,6 +93,7 @@ void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) 
     }
 
     inputFile.close();
+    cout << "#---------------------------------#" << endl;
     cout << " успішно зчитано з employees.txt" << endl;
 }
 
@@ -104,14 +107,15 @@ int main() {
         system("cls");
         cout << "#---------------------------------------------#" << endl;
         cout << "#                    Меню                     #" << endl;
-        cout << "#                Зчитати з файлу     - 1      #" << endl;
+        cout << "#                \033[1;31mЗчитати з файлу     - 1\033[0m      #" << endl;
         cout << "#          Занести нового працівника - 2      #" << endl;
-        cout << "#               Збереження у файл    - 3      #" << endl;
-        cout << "#                Пошук за віком      - 4      #" << endl;
+        cout << "#                \033[1;32mЗбереження у файл   - 3\033[0m      #" <<endl;
+        cout << "#                \033[1;33mПошук за віком      - 4 \033[0m     #" <<endl;
         cout << "#              Пошук за Прізвищем    - 5      #" << endl;
-        cout << "#           Пошук за часткою Прізвища- 6      #" << endl;
+        cout << "#           \033[1;36mПошук за часткою Прізвища- 6\033[0m      #" <<endl;
         cout << "#                    Вихід           - 0      #" << endl;
         cout << "#---------------------------------------------#" << endl;
+        cout << "                           мій вибір - ";
         cin >> x;
         if (x == 1) {
             loadEmployeesFromFile(employees, "employees.txt");
@@ -126,6 +130,7 @@ int main() {
             int searchAge;
             cout << "Введіть вік: ";
             cin >> searchAge;
+            system("cls");
             vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
             for (const auto& emp : employeesByAge) {
                 printEmployee(emp);
@@ -135,6 +140,7 @@ int main() {
             string searchSurname;
             cout << "Введить призвище для пошуку: ";
             cin >> searchSurname;
+            system("cls");
             vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
             for (const auto& emp : employeesBySurname) {
                 printEmployee(emp);
@@ -144,8 +150,9 @@ int main() {
             string searchPartialSurname;
             cout << "Введіть частку призвища для пошуку: ";
             cin >> searchPartialSurname;
+            system("cls");
             vector<Employee> employeesByPartialSurname = findEmployeesByPartialSurname(employees, searchPartialSurname);
-            cout << "Призвище " << searchPartialSurname << ":" << endl;
+            cout << endl;
             for (const auto& emp : employeesByPartialSurname) {
                 printEmployee(emp);
             }
@@ -155,6 +162,8 @@ int main() {
             cout << "До побачення." << endl;
             return 0;
         }
+        cout << "#---------------------------------#" << endl;
+        cout << "Натисніть будь-яку клавішу для продовження..." << endl;
         system("pause");
     }
     
