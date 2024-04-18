@@ -24,9 +24,11 @@ Employee enterEmployeeData() {
 }
 
 void printEmployee(const Employee& emp) {
-    cout << "Призвище: " << emp.surname << endl;
-    cout << "Ім'я: " << emp.name << endl;
-    cout << "Років: " << emp.age << endl;
+    cout << "#---------------------------------#" << endl;
+    cout << "#    Призвище: " << emp.surname << endl;
+    cout << "#        Ім'я: " << emp.name << endl;
+    cout << "#       Років: " << emp.age << endl;
+    cout << "#---------------------------------#" << endl;
 }
 
 vector<Employee> findEmployeesByAge(const vector<Employee>& employees, int age) {
@@ -71,7 +73,7 @@ void saveEmployeesToFile(const vector<Employee>& employees, const string& filena
     }
 
     outputFile.close();
-    cout << "Employee data saved to file." << endl;
+    cout << "employees.txt збережено у файл." << endl;
 }
 
 void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) {
@@ -89,7 +91,7 @@ void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) 
     }
 
     inputFile.close();
-    cout << "Employee data loaded from file." << endl;
+    cout << "employees.txt успішно зчитано." << endl;
 }
 
 int x = -1;
@@ -105,7 +107,7 @@ int main() {
         cout << "#                Зчитати з файлу     - 1      #" << endl;
         cout << "#          Занести нового працівника - 2      #" << endl;
         cout << "#               Збереження у файл    - 3      #" << endl;
-        cout << "#                Пошук за датой      - 4      #" << endl;
+        cout << "#                Пошук за віком      - 4      #" << endl;
         cout << "#              Пошук за Прізвищем    - 5      #" << endl;
         cout << "#           Пошук за часткою Прізвища- 6      #" << endl;
         cout << "#                    Вихід           - 0      #" << endl;
@@ -122,20 +124,20 @@ int main() {
         }
         if (x == 4) {
             int searchAge;
-            cout << "Введіть скільки років для пошуку: ";
+            cout << "Введіть вік: ";
             cin >> searchAge;
             vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
-            cout << "Вік " << searchAge << ":" << endl;
+            //cout << "Вік " << searchAge << ":" << endl;
             for (const auto& emp : employeesByAge) {
                 printEmployee(emp);
             }
         }
         if (x == 5) {
             string searchSurname;
-            cout << "Введить повне призвище для пошуку: ";
+            cout << "Введить призвище для пошуку: ";
             cin >> searchSurname;
             vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
-            cout << "Призвище " << searchSurname << ":" << endl;
+            //cout << "Призвище " << searchSurname << ":" << endl;
             for (const auto& emp : employeesBySurname) {
                 printEmployee(emp);
             }
