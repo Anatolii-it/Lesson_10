@@ -64,7 +64,7 @@ vector<Employee> findEmployeesByPartialSurname(const vector<Employee>& employees
 void saveEmployeesToFile(const vector<Employee>& employees, const string& filename) {
     ofstream outputFile(filename);
     if (!outputFile) {
-        cerr << "Error opening file for writing." << endl;
+        cerr << "неможливо почитати." << endl;
         return;
     }
 
@@ -73,7 +73,7 @@ void saveEmployeesToFile(const vector<Employee>& employees, const string& filena
     }
 
     outputFile.close();
-    cout << "employees.txt збережено у файл." << endl;
+    cout << " збережено у файл employees.txt " << endl;
 }
 
 void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) {
@@ -91,7 +91,7 @@ void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) 
     }
 
     inputFile.close();
-    cout << "employees.txt успішно зчитано." << endl;
+    cout << " успішно зчитано з employees.txt" << endl;
 }
 
 int x = -1;
@@ -127,7 +127,6 @@ int main() {
             cout << "Введіть вік: ";
             cin >> searchAge;
             vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
-            //cout << "Вік " << searchAge << ":" << endl;
             for (const auto& emp : employeesByAge) {
                 printEmployee(emp);
             }
@@ -137,7 +136,6 @@ int main() {
             cout << "Введить призвище для пошуку: ";
             cin >> searchSurname;
             vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
-            //cout << "Призвище " << searchSurname << ":" << endl;
             for (const auto& emp : employeesBySurname) {
                 printEmployee(emp);
             }
