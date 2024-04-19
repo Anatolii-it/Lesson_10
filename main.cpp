@@ -1,5 +1,5 @@
 #include "Lib.h"
-#include <conio.h>
+
 
 Employee enterEmployeeData() {
     Employee emp;
@@ -81,6 +81,30 @@ void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) 
 
     inputFile.close();
     cout << " успішно зчитано з employees.txt" << endl;
+}
+
+void editEmployee(vector<Employee>& employees, const string& surname) {
+    for (auto& emp : employees) {
+        if (emp.surname == surname) {
+            cout << "Введіть нові дані для працівника '" << surname << "':" << endl;
+            emp = enterEmployeeData();
+            cout << "Дані про працівника оновлено." << endl;
+            return;
+        }
+    }
+    cout << "Працівника з прізвищем '" << surname << "' не знайдено." << endl;
+}
+
+
+void deleteEmployee(vector<Employee>& employees, const string& surname) {
+    for (auto it = employees.begin(); it != employees.end(); ++it) {
+        if (it->surname == surname) {
+            employees.erase(it);
+            cout << "Працівника з прізвищем '" << surname << "' видалено." << endl;
+            return;
+        }
+    }
+    cout << "Працівника з прізвищем '" << surname << "' не знайдено." << endl;
 }
 
 int x = -1;
