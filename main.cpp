@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <conio.h>
 #include <Windows.h>
 #include <fstream>
@@ -16,20 +16,20 @@ struct Employee {
 
 Employee enterEmployeeData() {
     Employee emp;
-    cout << "Введіть призвіще: ";
+    cout << "Р’РІРµРґС–С‚СЊ РїСЂРёР·РІС–С‰Рµ: ";
     cin >> emp.surname;
-    cout << "Введіть ім'я: ";
+    cout << "Р’РІРµРґС–С‚СЊ С–Рј'СЏ: ";
     cin >> emp.name;
-    cout << "Повних років: ";
+    cout << "РџРѕРІРЅРёС… СЂРѕРєС–РІ: ";
     cin >> emp.age;
     return emp;
 }
 
 void printEmployee(const Employee& emp) {
     cout << "#---------------------------------#" << endl;
-    cout << "     Призвище: " << emp.surname << endl;
-    cout << "         Ім'я: " << emp.name << endl;
-    cout << "        Років: " << emp.age << endl;
+    cout << "     РџСЂРёР·РІРёС‰Рµ: " << emp.surname << endl;
+    cout << "         Р†Рј'СЏ: " << emp.name << endl;
+    cout << "        Р РѕРєС–РІ: " << emp.age << endl;
    
 }
 
@@ -66,7 +66,7 @@ vector<Employee> findEmployeesByPartialSurname(const vector<Employee>& employees
 void saveEmployeesToFile(const vector<Employee>& employees, const string& filename) {
     ofstream outputFile(filename);
     if (!outputFile) {
-        cerr << "неможливо почитати." << endl;
+        cerr << "РЅРµРјРѕР¶Р»РёРІРѕ РїРѕС‡РёС‚Р°С‚Рё." << endl;
         return;
     }
 
@@ -76,7 +76,7 @@ void saveEmployeesToFile(const vector<Employee>& employees, const string& filena
 
     outputFile.close();
     cout << "#---------------------------------#" << endl;
-    cout << " збережено у файл employees.txt " << endl;
+    cout << " Р·Р±РµСЂРµР¶РµРЅРѕ Сѓ С„Р°Р№Р» employees.txt " << endl;
 }
 
 void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) {
@@ -96,37 +96,37 @@ void loadEmployeesFromFile(vector<Employee>& employees, const string& filename) 
 
     inputFile.close();
     cout << "#---------------------------------#" << endl;
-    cout << " успішно зчитано з employees.txt" << endl;
+    cout << " СѓСЃРїС–С€РЅРѕ Р·С‡РёС‚Р°РЅРѕ Р· employees.txt" << endl;
 }
 
 void editEmployee(vector<Employee>& employees, const string& surname) {
     for (auto& emp : employees) {
         if (emp.surname == surname) {
-            cout << "Введіть нові дані для працівника '" << surname << "':" << endl;
+            cout << "Р’РІРµРґС–С‚СЊ РЅРѕРІС– РґР°РЅС– РґР»СЏ РїСЂР°С†С–РІРЅРёРєР° '" << surname << "':" << endl;
             emp = enterEmployeeData();
-            cout << "Дані про працівника оновлено." << endl;
+            cout << "Р”Р°РЅС– РїСЂРѕ РїСЂР°С†С–РІРЅРёРєР° РѕРЅРѕРІР»РµРЅРѕ." << endl;
             return;
         }
     }
-    cout << "Працівника з прізвищем '" << surname << "' не знайдено." << endl;
+    cout << "РџСЂР°С†С–РІРЅРёРєР° Р· РїСЂС–Р·РІРёС‰РµРј '" << surname << "' РЅРµ Р·РЅР°Р№РґРµРЅРѕ." << endl;
 }
 
-//видалення працівника
+//РІРёРґР°Р»РµРЅРЅСЏ РїСЂР°С†С–РІРЅРёРєР°
 void deleteEmployee(vector<Employee>& employees, const string& surname) {
     for (auto it = employees.begin(); it != employees.end(); ++it) {
         if (it->surname == surname) {
             employees.erase(it);
-            cout << "Працівника з прізвищем '" << surname << "' видалено." << endl;
+            cout << "РџСЂР°С†С–РІРЅРёРєР° Р· РїСЂС–Р·РІРёС‰РµРј '" << surname << "' РІРёРґР°Р»РµРЅРѕ." << endl;
             return;
         }
     }
-    cout << "Працівника з прізвищем '" << surname << "' не знайдено." << endl;
+    cout << "РџСЂР°С†С–РІРЅРёРєР° Р· РїСЂС–Р·РІРёС‰РµРј '" << surname << "' РЅРµ Р·РЅР°Р№РґРµРЅРѕ." << endl;
 }
 
 void saveSearchResultsToFile(const vector<Employee>& searchResults, const string& filename) {
     ofstream outputFile(filename);
     if (!outputFile) {
-        cerr << "неможливо почитати." << endl;
+        cerr << "РЅРµРјРѕР¶Р»РёРІРѕ РїРѕС‡РёС‚Р°С‚Рё." << endl;
         return;
     }
 
@@ -135,7 +135,7 @@ void saveSearchResultsToFile(const vector<Employee>& searchResults, const string
     }
 
     outputFile.close();
-    cout << "Результати пошуку збережено у файл " << filename << endl;
+    cout << "Р РµР·СѓР»СЊС‚Р°С‚Рё РїРѕС€СѓРєСѓ Р·Р±РµСЂРµР¶РµРЅРѕ Сѓ С„Р°Р№Р» " << filename << endl;
 }
 
 
@@ -149,23 +149,23 @@ int main() {
     while (x != 0) {
         system("cls");
         cout << "#----------------------------------------------------------#" << endl;
-        cout << "#                          Меню                            #" << endl;
-        cout << "#                      \033[1;31mЗчитати з файлу           - 1\033[0m       #" << endl;
-        cout << "#                Занести нового працівника       - 2       #" << endl;
-        cout << "#                      \033[1;32mЗбереження у файл         - 3\033[0m       #" <<endl;
-        cout << "#                      \033[1;33mПошук за віком            - 4 \033[0m      #" <<endl;
-        cout << "#                    \033[1;33mзі збереженням у файл       - 40    \033[0m  #" << endl;
-        cout << "#                    Пошук за Прізвищем          - 5       #" << endl;
-        cout << "#                    зі збереженням у файл       - 50      #" << endl;
-        cout << "#                 \033[1;36mПошук за часткою Прізвища-     - 6\033[0m       #" <<endl;
-        cout << "#                 \033[1;36mзі збереженням у файл          - 60\033[0m      #" << endl;
-        cout << "#                 Редагування за Прізвищем       - 7       #" << endl;
-        cout << "#                 Видалення за Прізвищем         - 8       #" << endl;
-        cout << "#                          Вихід                 - 0       #" << endl;
+        cout << "#                          РњРµРЅСЋ                            #" << endl;
+        cout << "#                      \033[1;31mР—С‡РёС‚Р°С‚Рё Р· С„Р°Р№Р»Сѓ           - 1\033[0m       #" << endl;
+        cout << "#                Р—Р°РЅРµСЃС‚Рё РЅРѕРІРѕРіРѕ РїСЂР°С†С–РІРЅРёРєР°       - 2       #" << endl;
+        cout << "#                      \033[1;32mР—Р±РµСЂРµР¶РµРЅРЅСЏ Сѓ С„Р°Р№Р»         - 3\033[0m       #" <<endl;
+        cout << "#                      \033[1;33mРџРѕС€СѓРє Р·Р° РІС–РєРѕРј            - 4 \033[0m      #" <<endl;
+        cout << "#                    \033[1;33mР·С– Р·Р±РµСЂРµР¶РµРЅРЅСЏРј Сѓ С„Р°Р№Р»       - 40    \033[0m  #" << endl;
+        cout << "#                    РџРѕС€СѓРє Р·Р° РџСЂС–Р·РІРёС‰РµРј          - 5       #" << endl;
+        cout << "#                    Р·С– Р·Р±РµСЂРµР¶РµРЅРЅСЏРј Сѓ С„Р°Р№Р»       - 50      #" << endl;
+        cout << "#                 \033[1;36mРџРѕС€СѓРє Р·Р° С‡Р°СЃС‚РєРѕСЋ РџСЂС–Р·РІРёС‰Р°-     - 6\033[0m       #" <<endl;
+        cout << "#                 \033[1;36mР·С– Р·Р±РµСЂРµР¶РµРЅРЅСЏРј Сѓ С„Р°Р№Р»          - 60\033[0m      #" << endl;
+        cout << "#                 Р РµРґР°РіСѓРІР°РЅРЅСЏ Р·Р° РџСЂС–Р·РІРёС‰РµРј       - 7       #" << endl;
+        cout << "#                 Р’РёРґР°Р»РµРЅРЅСЏ Р·Р° РџСЂС–Р·РІРёС‰РµРј         - 8       #" << endl;
+        cout << "#                          Р’РёС…С–Рґ                 - 0       #" << endl;
         cout << "#----------------------------------------------------------#" << endl;
-        cout << "                           мій вибір - ";
+        cout << "                           РјС–Р№ РІРёР±С–СЂ - ";
         if (!(cin >> x)) {
-            cout << "Помилка: Введено не число!" << endl;
+            cout << "РџРѕРјРёР»РєР°: Р’РІРµРґРµРЅРѕ РЅРµ С‡РёСЃР»Рѕ!" << endl;
             cin.clear();
             
         }
@@ -181,7 +181,7 @@ int main() {
         }
         if (x == 4) {
             int searchAge;
-            cout << "Введіть вік: ";
+            cout << "Р’РІРµРґС–С‚СЊ РІС–Рє: ";
             cin >> searchAge;
             system("cls");
             vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
@@ -191,7 +191,7 @@ int main() {
         }
         if (x == 5) {
             string searchSurname;
-            cout << "Введить призвище для пошуку: ";
+            cout << "Р’РІРµРґРёС‚СЊ РїСЂРёР·РІРёС‰Рµ РґР»СЏ РїРѕС€СѓРєСѓ: ";
             cin >> searchSurname;
             system("cls");
             vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
@@ -201,7 +201,7 @@ int main() {
         }
         if (x == 6) {
             string searchPartialSurname;
-            cout << "Введіть частку призвища для пошуку: ";
+            cout << "Р’РІРµРґС–С‚СЊ С‡Р°СЃС‚РєСѓ РїСЂРёР·РІРёС‰Р° РґР»СЏ РїРѕС€СѓРєСѓ: ";
             cin >> searchPartialSurname;
             system("cls");
             vector<Employee> employeesByPartialSurname = findEmployeesByPartialSurname(employees, searchPartialSurname);
@@ -210,29 +210,29 @@ int main() {
                 printEmployee(emp);
             }
         }
-        if (x == 7) { //для редагування працівника
+        if (x == 7) { //РґР»СЏ СЂРµРґР°РіСѓРІР°РЅРЅСЏ РїСЂР°С†С–РІРЅРёРєР°
             string editSurname;
-            cout << "Введіть прізвище працівника для редагування: ";
+            cout << "Р’РІРµРґС–С‚СЊ РїСЂС–Р·РІРёС‰Рµ РїСЂР°С†С–РІРЅРёРєР° РґР»СЏ СЂРµРґР°РіСѓРІР°РЅРЅСЏ: ";
             cin >> editSurname;
             system("cls");
             editEmployee(employees, editSurname);
         }
-        if (x == 8) { //  видалення працівника
+        if (x == 8) { //  РІРёРґР°Р»РµРЅРЅСЏ РїСЂР°С†С–РІРЅРёРєР°
             string deleteSurname;
-            cout << "Введіть прізвище працівника для видалення: ";
+            cout << "Р’РІРµРґС–С‚СЊ РїСЂС–Р·РІРёС‰Рµ РїСЂР°С†С–РІРЅРёРєР° РґР»СЏ РІРёРґР°Р»РµРЅРЅСЏ: ";
             cin >> deleteSurname;
             system("cls");
             deleteEmployee(employees, deleteSurname);
         }
 
         if (x == 0) {
-            cout << "До побачення." << endl;
+            cout << "Р”Рѕ РїРѕР±Р°С‡РµРЅРЅСЏ." << endl;
             saveEmployeesToFile(employees, "employees.txt");
             return 0;
         }
         if (x == 40) {
             int searchAge;
-            cout << "Введіть вік: ";
+            cout << "Р’РІРµРґС–С‚СЊ РІС–Рє: ";
             cin >> searchAge;
             system("cls");
             vector<Employee> employeesByAge = findEmployeesByAge(employees, searchAge);
@@ -243,7 +243,7 @@ int main() {
         }
         if (x == 50) {
             string searchSurname;
-            cout << "Введіть призвище для пошуку: ";
+            cout << "Р’РІРµРґС–С‚СЊ РїСЂРёР·РІРёС‰Рµ РґР»СЏ РїРѕС€СѓРєСѓ: ";
             cin >> searchSurname;
             system("cls");
             vector<Employee> employeesBySurname = findEmployeesBySurname(employees, searchSurname);
@@ -254,7 +254,7 @@ int main() {
         }
         if (x == 60) {
             string searchPartialSurname;
-            cout << "Введіть частку призвища для пошуку: ";
+            cout << "Р’РІРµРґС–С‚СЊ С‡Р°СЃС‚РєСѓ РїСЂРёР·РІРёС‰Р° РґР»СЏ РїРѕС€СѓРєСѓ: ";
             cin >> searchPartialSurname;
             system("cls");
             vector<Employee> employeesByPartialSurname = findEmployeesByPartialSurname(employees, searchPartialSurname);
@@ -266,7 +266,7 @@ int main() {
         }
         
         cout << "#---------------------------------#" << endl;
-        cout << "Натисніть будь-яку клавішу для продовження..." << endl;
+        cout << "РќР°С‚РёСЃРЅС–С‚СЊ Р±СѓРґСЊ-СЏРєСѓ РєР»Р°РІС–С€Сѓ РґР»СЏ РїСЂРѕРґРѕРІР¶РµРЅРЅСЏ..." << endl;
         
         _getch();
     }
